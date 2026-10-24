@@ -90,7 +90,7 @@
         "description": "通知目标会话",
         "type": "string",
         "default": "",
-        "hint": "形如 snowluma:FriendMessage:123456789。平台 ID 是本机平台 ID，不是 aiocqhttp 这类类型名。"
+        "hint": "格式 <平台ID>:FriendMessage:<你的QQ号>。平台 ID 是面板「消息平台」里那个适配器的 id（默认常与类型同名，如 aiocqhttp，改过就以实际为准）。"
       }
     }
   }
