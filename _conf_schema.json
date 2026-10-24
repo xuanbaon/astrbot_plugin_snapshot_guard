@@ -1,0 +1,97 @@
+{
+  "schedule": {
+    "description": "快照调度",
+    "type": "object",
+    "items": {
+      "auto_interval_hours": {
+        "description": "自动快照间隔（小时，0 关闭）",
+        "type": "int",
+        "default": 6,
+        "slider": {"min": 0, "max": 72, "step": 1}
+      },
+      "keep_snapshots": {
+        "description": "保留份数",
+        "type": "int",
+        "default": 8,
+        "slider": {"min": 1, "max": 50, "step": 1}
+      },
+      "snapshot_on_start": {
+        "description": "启动时存一个",
+        "type": "bool",
+        "default": true
+      },
+      "heartbeat_seconds": {
+        "description": "心跳间隔（秒）",
+        "type": "int",
+        "default": 60,
+        "slider": {"min": 10, "max": 600, "step": 10},
+        "hint": "心跳用来判断上次是不是异常退出。"
+      }
+    }
+  },
+  "scope": {
+    "description": "快照范围",
+    "type": "object",
+    "hint": "默认只收配置与插件状态，跳过图片素材等大文件，快照通常是几十 MB。",
+    "items": {
+      "max_file_mb": {
+        "description": "单文件大小上限（MB）",
+        "type": "int",
+        "default": 20,
+        "slider": {"min": 1, "max": 512, "step": 1},
+        "hint": "超过这个体积的文件不进快照，避免一次卷进几百 MB 的素材。"
+      },
+      "excludes": {
+        "description": "排除路径",
+        "type": "list",
+        "default": [
+          "attachments",
+          "logs",
+          "backups",
+          "temp",
+          "knowledge_base",
+          "webchat",
+          "plugins",
+          "data_v4.db",
+          "plugin_data/astrbot_plugin_snapshot_guard/snapshots"
+        ],
+        "hint": "相对 data 目录的路径，按前缀排除。想连插件代码一起回档，把 plugins 这行删掉。"
+      },
+      "exclude_globs": {
+        "description": "排除通配",
+        "type": "list",
+        "default": [
+          "*/packs/*",
+          "*/images/*",
+          "*/media/*",
+          "*/downloads/*",
+          "*_images/*"
+        ],
+        "hint": "通配写法，* 可以跨目录。默认把各插件下的表情包 / 图片库 / 下载缓存都排除，不假定你装了哪些插件。"
+      },
+      "include_plugin_code": {
+        "description": "把插件代码也算进来",
+        "type": "bool",
+        "default": false,
+        "hint": "开启后快照会包含 data/plugins 下的代码，插件升级搞坏东西时能一起回档，代价是快照变大。"
+      }
+    }
+  },
+  "notify": {
+    "description": "崩溃通知",
+    "type": "object",
+    "items": {
+      "notify_on_crash": {
+        "description": "异常退出后通知我",
+        "type": "bool",
+        "default": true
+      },
+      "admin_session": {
+        "description": "通知目标会话",
+        "type": "string",
+        "default": "",
+        "hint": "形如 snowluma:FriendMessage:123456789。平台 ID 是本机平台 ID，不是 aiocqhttp 这类类型名。"
+      }
+    }
+  }
+}
