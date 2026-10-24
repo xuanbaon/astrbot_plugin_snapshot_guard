@@ -1,0 +1,21 @@
+name: snapshot_guard
+display_name: 快照守卫
+short_desc: 定时轻量快照 + 崩溃自检 + 一条命令回档
+desc: >-
+  AstrBot 自带的「备份/导入」是手动的全量包。这个插件补上它没有的两件事：
+  定时轻量快照（只收配置与插件状态，按通配跳过表情包、图片库等素材，不假定你装了哪些插件），
+  以及非正常退出检测。崩了以后用 /快照 回档 一条命令退回去；回档前会自动再存一份
+  「回档前」快照，退错了还能退回来。
+help: |-
+  /快照                 立刻存一个快照
+  /快照 列表            查看已有快照
+  /快照 回档 last       回档到最新快照（也可以写快照名片段）
+  /快照 状态            查看调度、排除项与上次退出情况
+version: 1.1.0
+author: xuanbaon
+repo: https://github.com/xuanbaon/astrbot_plugin_snapshot_guard
+astrbot_version: ">=4.17.0"
+tags:
+  - 备份
+  - 运维
+  - 回档
