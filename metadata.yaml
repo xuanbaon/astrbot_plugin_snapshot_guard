@@ -11,7 +11,7 @@ help: |-
   /快照 列表            查看已有快照
   /快照 回档 last       回档到最新快照（也可以写快照名片段）
   /快照 状态            查看调度、排除项与上次退出情况
-version: 1.1.0
+version: 1.1.1
 author: xuanbaon
 repo: https://github.com/xuanbaon/astrbot_plugin_snapshot_guard
 astrbot_version: ">=4.17.0"
