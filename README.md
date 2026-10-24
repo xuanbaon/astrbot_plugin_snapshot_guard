@@ -71,7 +71,7 @@ scope:
   include_plugin_code: false
 notify:
   notify_on_crash: true
-  admin_session: "snowluma:FriendMessage:123456789"
+  admin_session: "<平台ID>:FriendMessage:<你的QQ号>"
 ```
 
 `admin_session` 里前半段是本机**平台 ID**，不是 `aiocqhttp` 这类类型名。
